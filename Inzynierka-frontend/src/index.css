@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Aptos';
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Aptos', sans-serif;
+  color: black;
+  height: 100%;
+  background-color: #ffffff;
+}
+
+html {
+  height: 100%;
+}
