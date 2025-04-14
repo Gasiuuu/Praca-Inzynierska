@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Home from "./pages/Home/Home.jsx";
 import UserService from "./services/UserService.js";
+import Home from "./pages/Home/Home.jsx";
+import Login from "./pages/Login/Login.jsx";
+
 
 function AppRoutes() {
 
@@ -24,6 +26,7 @@ function AppRoutes() {
             <Routes>
                 <Route path="/" element={<Navigate to="/strona-glowna" />} />
                 <Route path="/strona-glowna" element={renderLayout(<Home />)}/>
+                <Route path="logowanie" element={<Login />} />
                 {UserService.adminOnly() && (
                     <>
 
