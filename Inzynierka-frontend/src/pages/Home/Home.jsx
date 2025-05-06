@@ -2,10 +2,12 @@ import React from 'react'
 
 function Home() {
     return (
-        <div>
-            <h1>Home Page</h1>
+        <div className="px-5 py-3 mb-20">
+            <h1 className="text-black text-[30px] font-semibold">
+                Panel główny
+            </h1>
         </div>
     )
 }
 
-export default Home
+export default Home;

@@ -1,23 +1,25 @@
+@import "tailwindcss";
+
 @font-face {
   font-family: 'Kanit', sans-serif;
   font-weight: normal;
   font-style: normal;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 
-body {
+
+html, body {
+  height: 100%;
   margin: 0;
   font-family: 'Kanit', sans-serif;
   color: black;
-  height: 100%;
+  /*overflow: hidden;*/
   background-color: #ffffff;
-}
-
-html {
-  height: 100%;
 }

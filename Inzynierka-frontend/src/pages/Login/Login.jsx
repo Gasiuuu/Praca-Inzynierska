@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import login from './Login.module.css';
 import logo from '../../assets/logo.png';
 import { FaLocationDot } from "react-icons/fa6";
@@ -14,6 +14,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,7 +35,7 @@ function Login() {
                     <h1 className={login.logo}>Just_deutsch</h1>
                 </div>
 
-                <h2 className={login.location}><FaLocationDot /> Ramsau bei Berchtesgaden, Bayern </h2>
+                <h2 className={login.location}><FaLocationDot className="mr-3" /> Ramsau bei Berchtesgaden, Bayern </h2>
 
             </div>
             <div className={login.rightSide}>
