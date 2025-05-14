@@ -6,7 +6,7 @@ import { FaApple } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import loginForm from "./LoginForm.module.css";
 import UserService from "../../services/UserService.js";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function Login() {
 
@@ -70,7 +70,8 @@ function Login() {
                     <button className={loginForm.googleBtn}><FcGoogle className={loginForm.loginTypeIcons} /> Kontynuuj z Google</button>
                     <button className={loginForm.appleBtn}><FaApple className={loginForm.loginTypeIcons} /> Kontynuuj z Apple ID</button>
 
-                    <p className={loginForm.register}>Nie masz konta? <span className={loginForm.blue}>Zarejestruj się</span></p>
+                    <p className={loginForm.register}>Nie masz konta?<Link to="/rejestracja"> <span className={loginForm.blue}>Zarejestruj się</span></Link>
+                    </p>
                 </form>
 
             </div>

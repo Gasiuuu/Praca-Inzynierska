@@ -1,10 +1,11 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import UserService from "./services/UserService.js";
-import Home from "./pages/Home/Home.jsx";
+import Home from "./pages/Home.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Sidebar from "./components/Sidebar.jsx";
 import Footer from "./components/Footer.jsx";
+import {Register} from "./pages/Register.jsx";
 
 function AppRoutes() {
     const renderLayout = (Component) => (
@@ -30,6 +31,7 @@ function AppRoutes() {
                 <Route path="/" element={<Navigate to="/strona-glowna" />} />
                 <Route path="/strona-glowna" element={renderLayout(<Home />)} />
                 <Route path="/logowanie" element={<Login />} />
+                <Route path="/rejestracja" element={<Register />} />
                 {UserService.adminOnly() && (
                     <>
                     </>

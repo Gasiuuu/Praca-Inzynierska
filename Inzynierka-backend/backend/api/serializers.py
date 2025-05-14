@@ -8,7 +8,7 @@ User = get_user_model()
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ('id', 'username', 'email', 'role')
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'role', 'language_level',)
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
@@ -23,16 +23,22 @@ class LoginSerializer(serializers.Serializer):
 
 
 class RegisterSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField(required=True)
+    last_name = serializers.CharField(required=True)
+    language_level = serializers.ChoiceField(choices=CustomUser.LANGUAGE_LEVEL_CHOICES, required=True)
     password = serializers.CharField(required=True, write_only=True)
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password', 'language_level')
 
     def create(self, validated_data):
         user = User.objects.create_user(
             username=validated_data['username'],
             email=validated_data['email'],
-            password=validated_data['password']
+            password=validated_data['password'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name'],
+            language_level=validated_data['language_level'],
         )
         return user
