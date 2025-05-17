@@ -92,7 +92,7 @@ function Register() {
                 <div className="flex items-start justify-center pt-7">
                     <div
                         className={`
-                          bg-white/40 backdrop-blur-lg rounded-xl p-8 shadow-lg
+                          bg-white/40 backdrop-blur-xl rounded-xl p-8 shadow-lg
                           ${containerWidthClass} w-full pb-5
                           transition-width duration-800 ease-in-out
                         `}

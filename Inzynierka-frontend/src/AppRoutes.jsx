@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar.jsx";
 import Sidebar from "./components/Sidebar.jsx";
 import Footer from "./components/Footer.jsx";
 import {Register} from "./pages/Register.jsx";
+import FlashcardPage from "./pages/FlashcardPage.jsx";
 
 function AppRoutes() {
     const renderLayout = (Component) => (
@@ -16,7 +17,7 @@ function AppRoutes() {
 
             <div className="flex flex-1">
                 <Sidebar />
-                <div className="flex-1 p-10 overflow-y-auto">
+                <div className="flex-1 p-8 overflow-y-auto mb-15">
                     {Component}
                 </div>
             </div>
@@ -31,6 +32,7 @@ function AppRoutes() {
                 <Route path="/" element={<Navigate to="/strona-glowna" />} />
                 <Route path="/strona-glowna" element={renderLayout(<Home />)} />
                 <Route path="/logowanie" element={<Login />} />
+                <Route path="/fiszki" element={renderLayout(<FlashcardPage />)}/>
                 <Route path="/rejestracja" element={<Register />} />
                 {UserService.adminOnly() && (
                     <>

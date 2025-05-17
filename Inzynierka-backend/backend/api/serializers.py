@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework import serializers
 
-from .models import CustomUser
+from .models import CustomUser, Category, Flashcard
 
 User = get_user_model()
 
@@ -42,3 +42,13 @@ class RegisterSerializer(serializers.ModelSerializer):
             language_level=validated_data['language_level'],
         )
         return user
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('id', 'name', 'image')
+
+class FlashcardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Flashcard
+        fields = ('id', 'front', 'reverse', 'synonym', 'plural', 'article', 'example_sentence', 'category')

@@ -30,12 +30,14 @@ function Login() {
     return (
         <div className={login.loginContainer}>
             <div className={login.leftSide}>
-                <div className={login.logoContainer}>
-                    <img src={logo} className={login.logoImg} alt="logo"/>
-                    <h1 className={login.logo}>Just_deutsch</h1>
-                </div>
+                <Link to="/strona-glowna">
+                    <div className={login.logoContainer}>
+                        <img src={logo} className={login.logoImg} alt="logo"/>
+                        <h1 className={login.logo}>Just_deutsch</h1>
+                    </div>
+                </Link>
 
-                <h2 className={login.location}><FaLocationDot className="mr-3" /> Ramsau bei Berchtesgaden, Bayern </h2>
+                <h2 className={login.location}><FaLocationDot className="mr-3"/> Ramsau bei Berchtesgaden, Bayern </h2>
 
             </div>
             <div className={login.rightSide}>

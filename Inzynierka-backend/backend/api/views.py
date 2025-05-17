@@ -5,13 +5,23 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .models import CustomUser
-from .serializers import LoginSerializer, RegisterSerializer, User, CustomUserSerializer
+from .models import CustomUser, Category, Flashcard
+from .serializers import LoginSerializer, RegisterSerializer, CustomUserSerializer, CategorySerializer, FlashcardSerializer
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
+    permission_classes = [IsAuthenticated]
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [IsAuthenticated]
+
+class FlashcardViewSet(viewsets.ModelViewSet):
+    queryset = Flashcard.objects.select_related('category').all()
+    serializer_class = FlashcardSerializer
     permission_classes = [IsAuthenticated]
 
 
