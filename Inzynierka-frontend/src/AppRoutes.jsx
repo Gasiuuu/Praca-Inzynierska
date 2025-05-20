@@ -6,7 +6,8 @@ import Navbar from "./components/Navbar.jsx";
 import Sidebar from "./components/Sidebar.jsx";
 import Footer from "./components/Footer.jsx";
 import {Register} from "./pages/Register.jsx";
-import FlashcardPage from "./pages/FlashcardPage.jsx";
+import FlashcardsPage from "./pages/FlashcardsPage.jsx";
+import FlashcardSetPage from "./pages/FlashcardSetPage.jsx";
 
 function AppRoutes() {
     const renderLayout = (Component) => (
@@ -32,7 +33,8 @@ function AppRoutes() {
                 <Route path="/" element={<Navigate to="/strona-glowna" />} />
                 <Route path="/strona-glowna" element={renderLayout(<Home />)} />
                 <Route path="/logowanie" element={<Login />} />
-                <Route path="/fiszki" element={renderLayout(<FlashcardPage />)}/>
+                <Route path="/fiszki" element={renderLayout(<FlashcardsPage />)}/>
+                <Route path="/fiszki/:categoryId" element={renderLayout(<FlashcardSetPage />)} />
                 <Route path="/rejestracja" element={<Register />} />
                 {UserService.adminOnly() && (
                     <>

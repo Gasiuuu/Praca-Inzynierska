@@ -61,6 +61,13 @@ def registration_view(request):
         return Response({"message": "Rejestracja przebiegła pomyślnie"}, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_flashcards_by_category(request, category_id):
+    flashcards = Flashcard.objects.filter(category=category_id)
+    serializer = FlashcardSerializer(flashcards, many=True, context={'request': request})
+    return Response(serializer.data)
+
 def role_required(role):
     def decorator(view_func):
         def _wrapped_view(request, *args, **kwargs):

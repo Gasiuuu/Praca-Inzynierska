@@ -6,7 +6,14 @@ class FlashcardService {
     static BASE_URL = `${this.BACKEND}/api`;
 
     static async getFlashcards() {
-        const response = await axios.get(`${this.BASE_URL}/flashcards`, { withCredentials: true });
+        const response = await axios.get(`${this.BASE_URL}/flashcards`,
+            { withCredentials: true });
+        return response.data;
+    }
+
+    static async getFlashcardByCategoryId(id) {
+        const response = await axios.get(`${this.BASE_URL}/flashcards/${id}`,
+            {withCredentials: true });
         return response.data;
     }
 

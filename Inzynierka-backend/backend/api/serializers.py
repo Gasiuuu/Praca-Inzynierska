@@ -51,4 +51,4 @@ class CategorySerializer(serializers.ModelSerializer):
 class FlashcardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Flashcard
-        fields = ('id', 'front', 'reverse', 'synonym', 'plural', 'article', 'example_sentence', 'category')
+        fields = ('id', 'front', 'reverse', 'synonym', 'plural', 'article', 'color', 'example_sentence', 'example_sentence_translation', 'image', 'category', 'front_audio', 'example_sentence_audio')

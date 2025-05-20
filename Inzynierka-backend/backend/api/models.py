@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
+from django.core.files.base import ContentFile
 from django.db import models
-from django.template.defaultfilters import length
+from io import BytesIO
+from gtts import gTTS
 
 
 class CustomUser(AbstractUser):
@@ -54,8 +56,11 @@ class Flashcard(models.Model):
     article = models.CharField(max_length=100, choices=ARTICLE_CHOICES, blank=True)
     color = models.CharField(max_length=10, choices=COLOR_CHOICES, default='niebieski')
     example_sentence = models.TextField(blank=True)
-    image = models.ImageField(upload_to='flashcard_images', blank=True, null=True)
+    example_sentence_translation = models.TextField(blank=True)
+    image = models.ImageField(upload_to='flashcard_images/', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='flashcards')
+    front_audio = models.FileField(upload_to='flashcard_audio/', blank=True, null=True)
+    example_sentence_audio = models.FileField(upload_to='flashcard_audio/', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Fiszka'
@@ -63,3 +68,23 @@ class Flashcard(models.Model):
 
     def __str__(self):
         return f"{self.category}: {self.front} - {self.reverse}"
+
+    def save(self, *args, **kwargs):
+        if self.front and not self.front_audio:
+            tts = gTTS(self.front, lang='de')
+            buffer = BytesIO()
+            tts.write_to_fp(buffer)
+            buffer.seek(0)
+            self.front_audio.save(f"{self.front}.mp3",
+                            ContentFile(buffer.read()),
+                            save=False)
+
+        if self.example_sentence and not self.example_sentence_audio:
+            tts = gTTS(self.example_sentence, lang='de')
+            buffer = BytesIO()
+            tts.write_to_fp(buffer)
+            buffer.seek(0)
+            self.example_sentence_audio.save(f"{self.front}-zdanie.mp3",
+                            ContentFile(buffer.read()),
+                            save=False)
+        super().save(*args, **kwargs)
