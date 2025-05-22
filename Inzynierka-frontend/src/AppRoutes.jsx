@@ -5,9 +5,10 @@ import Login from "./pages/Login/Login.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Sidebar from "./components/Sidebar.jsx";
 import Footer from "./components/Footer.jsx";
-import {Register} from "./pages/Register.jsx";
+import Register from "./pages/Register.jsx";
 import FlashcardsPage from "./pages/FlashcardsPage.jsx";
 import FlashcardSetPage from "./pages/FlashcardSetPage.jsx";
+import TranslatePage from "./pages/TranslatePage.jsx";
 
 function AppRoutes() {
     const renderLayout = (Component) => (
@@ -36,6 +37,8 @@ function AppRoutes() {
                 <Route path="/fiszki" element={renderLayout(<FlashcardsPage />)}/>
                 <Route path="/fiszki/:categoryId" element={renderLayout(<FlashcardSetPage />)} />
                 <Route path="/rejestracja" element={<Register />} />
+                <Route path="/tlumaczenia" element={renderLayout(<TranslatePage />)} />
+
                 {UserService.adminOnly() && (
                     <>
                     </>
