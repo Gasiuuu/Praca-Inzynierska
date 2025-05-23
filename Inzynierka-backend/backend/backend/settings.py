@@ -17,6 +17,7 @@ import os
 
 load_dotenv()
 PONS_API_KEY=os.getenv("PONS_API_KEY")
+PONS_API_URL=os.getenv("PONS_API_URL")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
