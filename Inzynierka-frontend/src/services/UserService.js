@@ -24,6 +24,14 @@ class UserService {
         return response.data;
     }
 
+    static async getCurrentUser() {
+        const response = await axios.get(
+            `${this.BASE_URL}/me/`,
+            { withCredentials: true }
+        )
+        return response.data;
+    }
+
     static isAuthenticated(){
         const token = sessionStorage.getItem('token')
         return !!token

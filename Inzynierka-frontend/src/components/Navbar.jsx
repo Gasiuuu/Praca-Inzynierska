@@ -3,8 +3,20 @@ import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import { IoNotifications } from 'react-icons/io5'
 import { MdDarkMode } from 'react-icons/md'
+import UserService from "../services/UserService.js";
+import UserStore from "../stores/UserStore.js";
 
 function Navbar() {
+
+    const user = UserStore((state) => state.user)
+    const clearUser = UserStore((state) => state.clearUser)
+
+
+    const handleLogout = async () => {
+        await UserService.logout()
+        clearUser()
+    }
+
     return (
         <nav
             className="

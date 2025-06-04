@@ -9,8 +9,25 @@ import Register from "./pages/Register.jsx";
 import FlashcardsPage from "./pages/FlashcardsPage.jsx";
 import FlashcardSetPage from "./pages/FlashcardSetPage.jsx";
 import TranslatePage from "./pages/TranslatePage.jsx";
+import {useEffect} from "react";
+import UserStore from "./stores/UserStore.js";
 
 function AppRoutes() {
+
+    const setUser = UserStore((state) => state.setUser)
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const userData = await UserService.getCurrentUser()
+                setUser(userData)
+            } catch (e) {
+                console.log("Brak zalogowanego użytkownika: ", e)
+            }
+        }
+        fetchUser()
+    }, [setUser])
+
     const renderLayout = (Component) => (
         <div className="relative w-full flex flex-col min-h-screen">
             <header className="sticky top-0 w-full h-[var(--header-height)] z-[11]">

@@ -39,7 +39,8 @@ def login_view(request):
     if serializer.is_valid():
         user = serializer.validated_data['user']
         refresh = RefreshToken.for_user(user)
-        response = Response({"message": "Zalogowano pomyślnie"}, status=status.HTTP_200_OK)
+        user_data = CustomUserSerializer(user).data
+        response = Response({"message": "Zalogowano pomyślnie", "user": user_data}, status=status.HTTP_200_OK)
         set_jwt_token(response, str(refresh.access_token))
         response.set_cookie(
             key='refresh',
@@ -59,6 +60,13 @@ def registration_view(request):
         serializer.save()
         return Response({"message": "Rejestracja przebiegła pomyślnie"}, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def me_view(request):
+    user = request.user
+    user_data = CustomUserSerializer(user).data
+    return Response(user_data, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])

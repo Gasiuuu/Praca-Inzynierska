@@ -7,6 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import loginForm from "./LoginForm.module.css";
 import UserService from "../../services/UserService.js";
 import {Link, useNavigate} from "react-router-dom";
+import UserStore from "../../stores/UserStore.js";
 
 function Login() {
 
@@ -14,12 +15,15 @@ function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const setUser = UserStore((state) => state.setUser);
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await UserService.login(username, password);
+            const userData = await UserService.login(username, password);
+            console.log(userData.user);
+            setUser(userData.user);
             navigate('/strona-glowna')
         } catch(error) {
             setError(error);
