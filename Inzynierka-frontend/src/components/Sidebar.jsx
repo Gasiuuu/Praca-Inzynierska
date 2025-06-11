@@ -5,6 +5,7 @@ import Quiz from '../icons/Quiz.jsx'
 import Translate from '../icons/Translate.jsx'
 import Vocabulary from '../icons/Vocabulary.jsx'
 import Grammar from '../icons/Grammar.jsx'
+import Dialog from "../icons/Dialog.jsx";
 
 function Sidebar() {
     return (
@@ -21,10 +22,11 @@ function Sidebar() {
             <nav className="flex flex-col gap-3 items-center xl:items-start">
                 {[
                     { to: '/fiszki',        color: '#f89919', label: 'Fiszki',       Icon: Flashcards },
-                    { to: '/tlumaczenia',   color: '#12a9ff', label: 'Tłumaczenia',  Icon: Translate },
+                    { to: '/slownik',       color: '#12a9ff', label: 'Słownik',      Icon: Translate },
                     { to: '/quizy',         color: '#d50010', label: 'Quizy',        Icon: Quiz },
                     { to: '/slownictwo',    color: '#4dc416', label: 'Słownictwo',   Icon: Vocabulary },
                     { to: '/gramatyka',     color: '#cb16f3', label: 'Gramatyka',    Icon: Grammar },
+                    { to: '/tlumaczenia',   color: '#1c274c', label: 'Tłumaczenia',  Icon: Dialog },
                 ].map(({ to, color, label, Icon }) => (
                     <NavLink
                         key={to}

@@ -8,9 +8,10 @@ import Footer from "./components/Footer.jsx";
 import Register from "./pages/Register.jsx";
 import FlashcardsPage from "./pages/FlashcardsPage.jsx";
 import FlashcardSetPage from "./pages/FlashcardSetPage.jsx";
-import TranslatePage from "./pages/TranslatePage.jsx";
+import DictionaryPage from "./pages/DictionaryPage.jsx";
 import {useEffect} from "react";
 import UserStore from "./stores/UserStore.js";
+import TranslatePage from "./pages/TranslatePage.jsx";
 
 function AppRoutes() {
 
@@ -54,6 +55,7 @@ function AppRoutes() {
                 <Route path="/fiszki" element={renderLayout(<FlashcardsPage />)}/>
                 <Route path="/fiszki/:categoryId" element={renderLayout(<FlashcardSetPage />)} />
                 <Route path="/rejestracja" element={<Register />} />
+                <Route path="/slownik" element={renderLayout(<DictionaryPage />)} />
                 <Route path="/tlumaczenia" element={renderLayout(<TranslatePage />)} />
 
                 {UserService.adminOnly() && (

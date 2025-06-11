@@ -24,6 +24,15 @@ class UserService {
         return response.data;
     }
 
+    static async logout() {
+        const response = await axios.post(
+            `${this.BASE_URL}/logout/`,
+            {},
+            { withCredentials: true }
+        )
+        return response.data;
+    }
+
     static async getCurrentUser() {
         const response = await axios.get(
             `${this.BASE_URL}/me/`,
